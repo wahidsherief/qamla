@@ -26,5 +26,4 @@ class CandidateController extends Controller
 
         return successResponse('Job fetched successfully !', $jobs);
     }
-
 }

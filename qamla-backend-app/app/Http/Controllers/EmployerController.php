@@ -37,6 +37,17 @@ class EmployerController extends Controller
         return successResponse('Job titles fetched successfully !', $titles);
     }
 
+    public function searchJob(Request $request)
+    {
+        $results = $this->qamlaJobService->searchJob($request->key);
+
+        if (!$results) {
+            return errorResponse('Job search failed !');
+        }
+
+        return successResponse('Job results found !', $results);
+    }
+
     public function saveJob(Request $request)
     {
         $savedJob = $this->qamlaJobService->saveJob($request);

@@ -17,6 +17,14 @@ class QamlaJobService extends BaseService
         return $this->all(new QamlaJobTitle());
     }
 
+    public function searchJob($key)
+    {
+        return QamlaJob::whereHas('title', fn ($query) => $query
+                ->where('title', 'like', "%$key%"))
+                ->with('title')
+                ->get();
+    }
+
     public function saveJob($request)
     {
         return $this->save(new QamlaJob(), $request);
